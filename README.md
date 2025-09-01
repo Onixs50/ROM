@@ -13,10 +13,15 @@
 ## Quickstart (Ubuntu)
 ```bash
 git clone https://github.com/Onixs50/ROM.git
+cd ROM
+pip3 install -r requirements.txt
+python3 bot.py
+
 sudo apt-get update
+
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+
 python3 -c "from solcx import install_solc; install_solc('0.8.24')"
 python3 bot.py
 ```
