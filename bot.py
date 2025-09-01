@@ -30,7 +30,7 @@ from rich.prompt import Prompt, IntPrompt, Confirm
 from rich import box
 
 from web3 import Web3
-from web3.middleware import geth_poa_middleware
+from web3.middleware.proof_of_authority import extra_data_middleware as geth_poa_middleware
 from web3.types import TxReceipt
 
 from requests import Session
