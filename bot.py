@@ -158,7 +158,7 @@ def make_web3(rpc_url: str, proxies: Optional[Dict[str, str]] = None) -> Web3:
     provider = Web3.HTTPProvider(rpc_url, request_kwargs={"timeout": 60, "session": session})
     w3 = Web3(provider)
     # Rome uses EVM compatibility; in case of PoA-style, attach middleware
-    w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+    w3.middleware_onion.add(ExtraDataToPOAMiddleware)
     return w3
 
 # ---------- Compilation ----------
