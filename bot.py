@@ -240,8 +240,8 @@ class RunContext:
     proxies_used: Optional[Dict[str, str]] = None
     stats: Dict[str, WalletStats] = field(default_factory=dict)
 
-def send_and_wait(w3: Web3, tx) -> TxReceipt:
-    tx_hash = w3.eth.send_raw_transaction(tx)
+def send_and_wait(w3: Web3, raw_tx: bytes) -> TxReceipt:
+    tx_hash = w3.eth.send_raw_transaction(raw_tx)
     console.print(f"[dim]Tx sent:[/dim] [bold]{tx_hash.hex()}[/bold]")
     receipt = w3.eth.wait_for_transaction_receipt(tx_hash, timeout=180)
     status = receipt.status
@@ -321,6 +321,7 @@ def interact_with(ctx: RunContext, acct, name: str, at: str, max_retries: int = 
             return interact_with(ctx, acct, name, at, max_retries - 1)
         console.print(f"[red]Interaction error {name}:[/red] {e}")
         return False
+
 
 # ---------- Menu & Flow ----------
 
