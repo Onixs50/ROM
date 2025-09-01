@@ -30,7 +30,7 @@ from rich.prompt import Prompt, IntPrompt, Confirm
 from rich import box
 
 from web3 import Web3
-from web3.middleware.proof_of_authority import extra_data_middleware as geth_poa_middleware
+from web3.middleware import ExtraDataToPOAMiddleware
 from web3.types import TxReceipt
 
 from requests import Session
@@ -39,6 +39,7 @@ from eth_account import Account
 # solcx for dynamic compilation
 from solcx import compile_standard, install_solc, set_solc_version
 
+# -----------------------------
 console = Console()
 
 DEFAULT_RPC = "https://martius-i.testnet.romeprotocol.xyz"
@@ -51,7 +52,15 @@ ACCOUNTS_FILE = "account.txt"
 PROXIES_FILE = "proxy.txt"
 ARTIFACTS_DIR = "artifacts"
 
+# -----------------------------
+# Web3 setup
+w3 = Web3(Web3.HTTPProvider(DEFAULT_RPC))
+
+# Add PoA middleware for Martius Testnet
+w3.middleware_onion.add(ExtraDataToPOAMiddleware)
+
 # ---------- Utilities ----------
+
 
 def read_file_lines(path: str) -> List[str]:
     if not os.path.exists(path):
