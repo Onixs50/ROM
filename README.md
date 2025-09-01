@@ -12,6 +12,7 @@
 
 ## Quickstart (Ubuntu)
 ```bash
+git clone https://github.com/Onixs50/ROM.git
 sudo apt-get update
 python3 -m venv .venv
 source .venv/bin/activate
