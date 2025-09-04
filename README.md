@@ -12,4 +12,8 @@
 git clone https://github.com/Onixs50/ROM.git
 cd ROM
 python3 bot.py
+sudo apt update
+sudo apt install python3-venv python3-pip -y
+python3 -m venv venv
+source venv/bin/activate 
 ```
